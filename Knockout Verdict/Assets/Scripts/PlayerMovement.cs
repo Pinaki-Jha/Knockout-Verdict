@@ -32,21 +32,23 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveInput = UnityEngine.Input.GetAxis("Horizontal");
 
-        if (moveInput > 0)
+        Body.velocity = new Vector2(moveInput * MoveSpeed, Body.velocity.y);
+
+        if (moveInput >= 0.01f)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0); // Face right
-            Body.velocity = new Vector2(MoveSpeed, Body.velocity.y);
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-        else if (moveInput < 0)
+        else if ( moveInput <= -0.01f)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0); // Face left
-            Body.velocity = new Vector2(-MoveSpeed, Body.velocity.y);
-        }
-        else
-        {
-            Body.velocity = new Vector2(0, Body.velocity.y); // Stop horizontal movement when no input
+            transform.rotation = Quaternion.Euler(0f,180f, 0f);
         }
 
+    }
+
+    void Flip()
+    {
+
+        
     }
 
     void Crouch()

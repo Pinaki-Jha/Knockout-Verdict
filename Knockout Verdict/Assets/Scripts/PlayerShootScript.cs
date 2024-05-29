@@ -25,7 +25,7 @@ public class PlayerShootScript : MonoBehaviour
 
 
         //checks for shooting!
-        if (Input.GetKey(KeyCode.Z)) 
+        if (Input.GetKey(KeyCode.W)) 
         {
             Shoot();
         }

@@ -5,8 +5,6 @@ using UnityEngine.Rendering;
 
 public class GunDirectionScript : MonoBehaviour
 {
-    private float xInput;
-    private int facingRight;
     void Start()
     {
         
@@ -16,53 +14,43 @@ public class GunDirectionScript : MonoBehaviour
     void Update()
     {
         //have to code in change in direction when arrow keys are pressed!!!
-        xInput = UnityEngine.Input.GetAxis("Horizontal");
-
-        facingRight = xInput > 0 ? 1 : -1;
-
-
-
+        
         CheckDirection();
-        Flip();
+        
         
 
     }
 
-
-    void Flip()
-    {
-        if (facingRight > 0)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-    }
     void CheckDirection()
     {
-        
+
         //float yInput = UnityEngine.Input.GetAxis("Vertical");
 
+        float xInput = UnityEngine.Input.GetAxis("Horizontal");
+        int facingRight = xInput > 0 ? -1 : 1;
 
 
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))  && xInput == 0)
+        if (Input.GetKey(KeyCode.UpArrow)  && xInput == 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 90);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 90);
+            Debug.Log("aiming up");
         }
-        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && xInput != 0)
+        else if (Input.GetKey(KeyCode.UpArrow) && xInput != 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 45*facingRight);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 45);
+            Debug.Log("aiming diagonal up");
         }
-        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.DownArrow)) && xInput != 0) 
+        else if (Input.GetKey(KeyCode.DownArrow) && xInput != 0) 
         {
-            transform.rotation = Quaternion.Euler(0, 0, -45*facingRight);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -45);
+            Debug.Log("aiming diagonal down");
         }
         
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //float toRotate = xInput>0?0:180;
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+            Debug.Log("aiming straight");
         }
 
     }
