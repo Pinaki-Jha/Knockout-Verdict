@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D boxCollider;
     public float MoveSpeed = 5;
     public float jumpForce = 10;
-    public bool isGrounded = false;
+    public bool isGrounded = true;
     public bool isCrouching = false;
 
     void Start()
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Crouch()
     {
-        if (UnityEngine.Input.GetKey(KeyCode.S))
+        if (UnityEngine.Input.GetKey(KeyCode.S) && UnityEngine.Input.GetAxis("Horizontal") == 0)
         {
             if (!isCrouching)
             {
