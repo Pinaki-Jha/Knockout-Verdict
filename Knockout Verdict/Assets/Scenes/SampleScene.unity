@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 247757557}
   - component: {fileID: 247757561}
   - component: {fileID: 247757563}
+  - component: {fileID: 247757564}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -243,7 +244,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 9.8
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -350,6 +351,24 @@ MonoBehaviour:
   Bullet: {fileID: 1536739159232923101, guid: a2e11187033d47f409d2695e057dda24, type: 3}
   GunNozzle: {fileID: 1154882441}
   FiringRate: 0
+--- !u!114 &247757564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247757556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044ff8afe0602ed40879e4d9ddd73e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Body: {fileID: 247757558}
+  boxCollider: {fileID: 247757557}
+  MoveSpeed: 4.98
+  jumpForce: 10
+  isGrounded: 0
+  isCrouching: 0
 --- !u!4 &385978135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
@@ -366,7 +385,7 @@ GameObject:
   - component: {fileID: 451268079}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -727,6 +746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -783,6 +806,10 @@ PrefabInstance:
     - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_Name
       value: Ground (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -874,6 +901,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_Name
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1014,6 +1045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1083,6 +1118,10 @@ PrefabInstance:
     - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_Name
       value: Ground (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1317,6 +1356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1372,6 +1415,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_Name
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434436864027111263, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
+      propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []

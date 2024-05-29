@@ -5,7 +5,6 @@ using UnityEngine.Rendering;
 
 public class GunDirectionScript : MonoBehaviour
 {
-    // Start is called before the first frame update
     private bool isRotated = false;
     void Start()
     {
@@ -20,29 +19,30 @@ public class GunDirectionScript : MonoBehaviour
         CheckDirection();
         
 
-
     }
 
     void CheckDirection()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetAxis("Horizontal") == 0)
+        float xInput = UnityEngine.Input.GetAxis("Horizontal");
+        float yInput = UnityEngine.Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.W) && Input.GetAxis("Horizontal") == 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetAxis("Horizontal") != 0)
+        else if (Input.GetKey(KeyCode.W) && Mathf.Abs(xInput) > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 45);
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetAxis("Horizontal") != 0) 
+        else if (Input.GetKey(KeyCode.S) && Mathf.Abs(xInput) < 0) 
         {
             transform.rotation = Quaternion.Euler(0, 0, -45);
         }
-        else
+        else if (Input.GetKey(KeyCode.S) && Mathf.Abs(xInput) > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
     }
 
-   
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - BulletDespawnField
+  - Ground
   layers:
   - Default
   - TransparentFX
