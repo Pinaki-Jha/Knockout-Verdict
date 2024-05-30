@@ -365,10 +365,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Body: {fileID: 247757558}
   boxCollider: {fileID: 247757557}
-  MoveSpeed: 4.98
-  jumpForce: 10
+  MoveSpeed: 5.5
+  jumpForce: 28
+  flipDuration: 0.3
+  crouchHeightAdjustment: 0.001
   isGrounded: 0
   isCrouching: 0
+  isFlipping: 0
 --- !u!4 &385978135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
