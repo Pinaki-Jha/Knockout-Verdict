@@ -336,6 +336,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d1a8b57207a9b46aad9f061d4e3626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: {fileID: 247757556}
+  maxHealth: 100
+  currentHealth: 0
+  attack: 10
+  defense: 5
+  moveSpeed: 5.5
+  jumpForce: 28
+  firingRate: 0.25
 --- !u!114 &247757563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,9 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc80bca57bb6b6045acd06877d9483a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 1536739159232923101, guid: a2e11187033d47f409d2695e057dda24, type: 3}
-  GunNozzle: {fileID: 1154882441}
-  FiringRate: 0
+  bullet: {fileID: 1536739159232923101, guid: a2e11187033d47f409d2695e057dda24, type: 3}
+  player: {fileID: 247757556}
+  playerStats: {fileID: 247757561}
+  gunNozzle: {fileID: 1154882441}
 --- !u!114 &247757564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Body: {fileID: 247757558}
   boxCollider: {fileID: 247757557}
-  MoveSpeed: 5.5
-  jumpForce: 28
+  playerStats: {fileID: 247757561}
   flipDuration: 0.3
   crouchHeightAdjustment: 0.001
   isGrounded: 0

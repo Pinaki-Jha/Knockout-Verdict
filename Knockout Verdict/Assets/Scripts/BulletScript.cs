@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-
-    public float speed;
-    // Start is called before the first frame update
+    public GameObject shooter;  //Who shot the bullet
+    public float speed;        //speed of the bullet
     void Start()
     {
-        // Jis gun object se fire horaha hoga uski property hogi firing rate/speed uss se nikaal ke speed daal denge
+        StatSystemScript shooterStats = shooter.GetComponent<StatSystemScript>();
+        speed = shooterStats.bulletSpeed;
+        /*Testing
+        if (shooter.CompareTag("Player"))
+        {
+            Debug.Log("Bullet shot by player");
+        }
+        */
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += transform.right * speed * Time.deltaTime;
@@ -20,6 +26,13 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*Testing
+         if(collision.gameObject == shooter)
+        {
+            //Debug.Log("Shot self");
+        }
+        */
+
         Destroy(gameObject);
     }
 }

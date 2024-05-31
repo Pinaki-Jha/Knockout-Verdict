@@ -4,11 +4,11 @@ using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     public Rigidbody2D Body;
     public BoxCollider2D boxCollider;
+    public StatSystemScript playerStats;    //Shifted moveSpeed and jumpForce to playerStats
 
-    public float MoveSpeed = 5.5f;
-    public float jumpForce = 28;
     public float flipDuration = 0.3f; //flip time
     public float crouchHeightAdjustment = 0.001f; // How much to lift the player when crouching
 
@@ -16,12 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isCrouching = false;
     public bool isFlipping = false;
 
-
     void Update()
     {
-        Move();
-        Crouch();
-        Jump();
+            Move();
+            Crouch();
+            Jump();
     }
 
     void Move()
@@ -34,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         float moveInput = UnityEngine.Input.GetAxis("Horizontal");
 
-        Body.velocity = new Vector2(moveInput * MoveSpeed, Body.velocity.y);
+        Body.velocity = new Vector2(moveInput * playerStats.moveSpeed, Body.velocity.y);
 
         if (moveInput >= 0.01f)
         {
@@ -82,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space) && isGrounded && !isCrouching)
         {
-            Body.velocity = new Vector2(Body.velocity.x, jumpForce);
+            Body.velocity = new Vector2(Body.velocity.x, playerStats.jumpForce);
             StartCoroutine(Flip());
         }
     }

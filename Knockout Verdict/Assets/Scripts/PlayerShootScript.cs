@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class PlayerShootScript : MonoBehaviour
 {
-    public GameObject Bullet;
-    public Transform GunNozzle;
-    public float FiringRate;  
+    public GameObject bullet;
+    public GameObject player;
+    public StatSystemScript playerStats;
+    public Transform gunNozzle;
 
+    private float FiringRate = 0.25f;  
     private float counter;
-    // Start is called before the first frame update
+    
     void Start()
     {
-        FiringRate = 0.25f; //Change according to the gun being used later on
+        FiringRate = playerStats.firingRate; 
         counter = FiringRate;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-
-        //when coding movement to flip the player use rotation of 180 degrees in y instead of flip command vector usage!!!
-        //the latter does not flip the gun nozzle with it, which will lead to many many problems!!!
 
 
         //checks for shooting!
@@ -35,7 +34,9 @@ public class PlayerShootScript : MonoBehaviour
     {
         if (counter >= FiringRate)
         {
-            Instantiate(Bullet, GunNozzle.position, GunNozzle.rotation);
+            Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
+            BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+            bulletScript.shooter = player; // Set the shooter reference for the bullet.
             counter = 0;
         }
         else
