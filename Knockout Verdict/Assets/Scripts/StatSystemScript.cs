@@ -9,12 +9,13 @@ public class StatSystemScript : MonoBehaviour
 
     public float maxHealth = 100f;
     public float currentHealth;
-    public float attack = 25f;
+    public float attack = 0.5f;
     public float bulletSpeed =30f;
     public float defense = 0f;
     public float moveSpeed = 5.5f;
     public float jumpForce = 28f;
     public float firingRate = 0.25f;
+    public bool isAlive = true;
 
 
     //This script will hold all of the stat variables and functions
@@ -42,18 +43,22 @@ public class StatSystemScript : MonoBehaviour
 
             if (bulletScript.shooter == gameObject)                        //check for friendly fire.
             {
-                Debug.Log("shot self");
+                Debug.Log(gameObject.name + "shot self");
             }
             else
             {
-                currentHealth -= 25;
-                Debug.Log("Damage Taken");
+                currentHealth -= bulletScript.damage;
+                Debug.Log("Damage Taken by " + gameObject.name);
             }
         }
     }
 
+    
     void Death() { if (currentHealth <= 0) {                //Check for dead player.
+            name = gameObject.name;
+            Debug.Log(name+ " killed");
+            isAlive = false;
             Destroy(gameObject);
-            Debug.Log("Mar gaye guru");
+            
         } }
 }

@@ -9,13 +9,14 @@ public class PlayerShootScript : MonoBehaviour
     public StatSystemScript playerStats;
     public Transform gunNozzle;
 
-    private float FiringRate = 0.25f;  
-    private float counter;
+    private float FiringRate = 0.25f;
+    private bool isShooting = false;
+
+    private Coroutine shootingCoroutine;
     
     void Start()
     {
         FiringRate = playerStats.firingRate; 
-        counter = FiringRate;
     }
 
     
@@ -24,24 +25,30 @@ public class PlayerShootScript : MonoBehaviour
 
 
         //checks for shooting!
-        if (Input.GetKey(KeyCode.W)) 
+        if (Input.GetKeyDown(KeyCode.W) && !isShooting) 
         {
-            Shoot();
+            isShooting=true;
+            shootingCoroutine = StartCoroutine(Shoot());
         }
+
+        if (Input.GetKeyUp(KeyCode.W) && isShooting) 
+        {
+            isShooting=false;
+            StopCoroutine(shootingCoroutine);
+        
+        }
+
     }
 
-    void Shoot()
+    IEnumerator Shoot()
     {
-        if (counter >= FiringRate)
+        while (true)
         {
-            Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
-            BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+            GameObject shotBullet = Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
+            BulletScript bulletScript = shotBullet.GetComponent<BulletScript>();
             bulletScript.shooter = player; // Set the shooter reference for the bullet.
-            counter = 0;
-        }
-        else
-        {
-            counter += Time.deltaTime;
+            yield return new WaitForSeconds(FiringRate);
+            
         }
         
     }
