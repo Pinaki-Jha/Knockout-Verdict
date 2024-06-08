@@ -16,23 +16,51 @@ public class PlayerMovement : MonoBehaviour
     public float flipDuration = 0.3f;   //flip time
     public float crouchHeightAdjustment = 0.001f;   // How much to lift the player when crouching
 
+    //public bool isGrounded = true;
     public bool isCrouching = false;
     public bool isFlipping = false;
 
+    private void Start()
+    {
+        GroundLayer = LayerMask.GetMask("Ground");
+        WallLayer = LayerMask.GetMask("Wall");
 
+
+    }
     void Update()
     {
 
+        float moveInput = UnityEngine.Input.GetAxis("Horizontal");
+        
+        Move(moveInput);
+
+        Jump(moveInput);
+
+        Crouch();
+
+
+
+        
+
+        //set animator prefrences
+        //anim.SetBool("run", moveInput != 0);
+        //anim.SetBool("Grounded", isGrounded());
+
+    }
+
+
+    void Move(float moveInput)
+    {
         if (isCrouching || isFlipping)
         {
             // Do not move when crouching or flipping
             return;
         }
-        
-        float moveInput = UnityEngine.Input.GetAxis("Horizontal");
+
         
 
-        //flip player according to direction of movement
+        Body.velocity = new Vector2(moveInput * playerStats.moveSpeed, Body.velocity.y);
+
         if (moveInput >= 0.01f)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -41,14 +69,53 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
+    }
 
+
+
+    void Crouch()
+    {
+        if (UnityEngine.Input.GetKey(KeyCode.C) && UnityEngine.Input.GetAxis("Horizontal") == 0)
+        {
+            if (!isCrouching)
+            {
+                // Set the collider size to the crouch rotation
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, -90);
+                isCrouching = true;
+                // Lift the player up a little bit
+                transform.position = new Vector3(transform.position.x, transform.position.y + crouchHeightAdjustment, transform.position.z);
+                // Disable gravity
+                Body.gravityScale = 0;
+            }
+
+        }
+        else
+        {
+            if (isCrouching)
+            {
+                // Revert the collider rotation to the original orientation
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                isCrouching = false;
+                // Lower the player back to the original position
+                transform.position = new Vector3(transform.position.x, transform.position.y - crouchHeightAdjustment, transform.position.z);
+                // Re-enable gravity
+                Body.gravityScale = 9.8f;
+            }
+        }
+    }
+
+    void Jump(float moveInput)
+    {
+
+        //anim.SetTrigger("jump");
 
         //wall jump logic
         if (wallJumpCoolDown < 0.2f)
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
-                Jump();
+                Body.velocity = new Vector2(Body.velocity.x, playerStats.jumpForce);
+                StartCoroutine(Flip());
             }
             Body.velocity = new Vector2(moveInput * playerStats.moveSpeed, Body.velocity.y);
 
@@ -64,53 +131,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             wallJumpCoolDown = Time.deltaTime;
-        }
-
-        //set animator prefrences
-        anim.SetBool("run", moveInput != 0);
-        anim.SetBool("Grounded", isGrounded());
-
-        if (UnityEngine.Input.GetKey(KeyCode.C) && UnityEngine.Input.GetAxis("Horizontal") == 0)
-        {
-            Crouch();
-        }
-    }
-
-    
-    
-    void Crouch()
-    {
-        if (!isCrouching)
-        {
-            // Set the collider size to the crouch rotation
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, -90);
-            isCrouching = true;
-            // Lift the player up a little bit
-            transform.position = new Vector3(transform.position.x, transform.position.y + crouchHeightAdjustment, transform.position.z);
-            // Disable gravity
-            Body.gravityScale = 0;
-        }
-
-        else
-        {
-            // Revert the collider rotation to the original orientation
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            isCrouching = false;
-            // Lower the player back to the original position
-            transform.position = new Vector3(transform.position.x, transform.position.y - crouchHeightAdjustment, transform.position.z);
-            // Re-enable gravity
-            Body.gravityScale = 9.8f;
-        }
-    }
-
-    void Jump()
-    {
-        Body.velocity = new Vector2(Body.velocity.x, playerStats.jumpForce);
-        anim.SetTrigger("jump");
-
-
-        StartCoroutine(Flip());
-    
+        }  
     }
 
 
