@@ -54,11 +54,15 @@ public class StatSystemScript : MonoBehaviour
     }
 
     
-    void Death() { if (currentHealth <= 0) {                //Check for dead player.
+    void Death() 
+    { if (currentHealth <= 0) 
+        {                //Check for dead player.
             name = gameObject.name;
             Debug.Log(name+ " killed");
             isAlive = false;
             Destroy(gameObject);
             
-        } }
+        } 
+    }
 }
+
