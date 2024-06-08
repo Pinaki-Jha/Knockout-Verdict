@@ -22,6 +22,7 @@ public class EnemyShootScript : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemy1Stat = gameObject.GetComponent<StatSystemScript>();
+        enemy1Stat.entityName = "Stationary terrorist";
         
     }
 

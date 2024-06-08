@@ -8,7 +8,7 @@ TagManager:
   - BulletDespawnField
   - Ground
   - Enemy
-  - Med Kit
+  - MedKit
   layers:
   - Default
   - TransparentFX

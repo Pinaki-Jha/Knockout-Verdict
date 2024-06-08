@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class StatSystemScript : MonoBehaviour
 {
-    
 
+    public string entityName = "Jaata Ka Chhora";
     public float maxHealth = 100f;
     public float currentHealth;
     public float attack = 0.5f;
     public float bulletSpeed =30f;
-    public float defense = 0f;
+    public float defence = 0f;
     public float moveSpeed = 5.5f;
     public float jumpForce = 28f;
     public float firingRate = 0.25f;
@@ -43,12 +43,12 @@ public class StatSystemScript : MonoBehaviour
 
             if (bulletScript.shooter == gameObject)                        //check for friendly fire.
             {
-                Debug.Log(gameObject.name + "shot self");
+                Debug.Log(entityName + "shot self");
             }
             else
             {
                 currentHealth -= bulletScript.damage;
-                Debug.Log("Damage Taken by " + gameObject.name);
+                Debug.Log("Damage Taken by " + entityName);
             }
         }
     }
