@@ -39,7 +39,12 @@ public class GunDirectionScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -45);
             //Debug.Log("aiming diagonal down");
         }
-        
+        else if (Input.GetKey(KeyCode.DownArrow) && xInput == 0)
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -90);
+            //Debug.Log("aiming down");
+        }
+
         else
         {
             //float toRotate = xInput>0?0:180;

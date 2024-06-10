@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Windows;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,13 +15,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float wallJumpCoolDown;
     public float flipDuration = 0.3f;   //flip time
-    public float crouchHeightAdjustment = 0.001f;   // How much to lift the player when crouching
+    public float crouchHeightAdjustment = 0.01f;   // How much to lift the player when crouching
 
-    //public bool isGrounded = true;
     public bool isCrouching = false;
     public bool isFlipping = false;
 
-    private void Start()
+    void Start()
     {
         GroundLayer = LayerMask.GetMask("Ground");
         WallLayer = LayerMask.GetMask("Wall");
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float moveInput = UnityEngine.Input.GetAxis("Horizontal");
-        
+
         Move(moveInput);
 
         Jump(moveInput);
@@ -39,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         Crouch();
 
 
-
-        
 
         //set animator prefrences
         //anim.SetBool("run", moveInput != 0);
@@ -57,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        
+
 
         Body.velocity = new Vector2(moveInput * playerStats.moveSpeed, Body.velocity.y);
 
@@ -82,12 +80,19 @@ public class PlayerMovement : MonoBehaviour
                 // Set the collider size to the crouch rotation
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, -90);
                 isCrouching = true;
+
                 // Lift the player up a little bit
                 transform.position = new Vector3(transform.position.x, transform.position.y + crouchHeightAdjustment, transform.position.z);
+
                 // Disable gravity
                 Body.gravityScale = 0;
-            }
 
+                // gun direction + position fix
+                UnityEngine.Transform Guntransform = transform.Find("Gun");
+                Debug.Log(Guntransform.position);
+                Debug.Log(Guntransform.localPosition);
+                Guntransform.position = new Vector3(0.204f, -0.024f, Guntransform.position.z);
+            }
         }
         else
         {
@@ -96,10 +101,18 @@ public class PlayerMovement : MonoBehaviour
                 // Revert the collider rotation to the original orientation
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 isCrouching = false;
+
                 // Lower the player back to the original position
                 transform.position = new Vector3(transform.position.x, transform.position.y - crouchHeightAdjustment, transform.position.z);
+
                 // Re-enable gravity
-                Body.gravityScale = 9.8f;
+                Body.gravityScale = 9.8f; // You might need to adjust this value to your original gravity scale
+
+                // gun direction + position fix
+                UnityEngine.Transform Guntransform = transform.Find("Gun");
+                Debug.Log(Guntransform.position);
+                Debug.Log(Guntransform.localPosition);
+                Guntransform.position = new Vector3(0.122f, Guntransform.position.y, Guntransform.position.z);
             }
         }
     }
@@ -131,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             wallJumpCoolDown = Time.deltaTime;
-        }  
+        }
     }
 
 
