@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ObjectSpawnerScript : MonoBehaviour
 {
-    public GameObject toSpawn;
+    public GameObject toSpawnEnemy;
+    public GameObject toSpawnMeds;
 
     private void OnBecameVisible()
     {
-        Debug.Log("Object Instantiated");
-        Instantiate(toSpawn,gameObject.transform.position, gameObject.transform.rotation);   
+        Debug.Log("Enemy Instantiated");
+        Instantiate(toSpawnEnemy,gameObject.transform.position, gameObject.transform.rotation);   
     }
 
 

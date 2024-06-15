@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,13 @@ public class HealthManager : MonoBehaviour
     public Image healthBar;
 
 
+
     // Update is called once per frame
     void Update()
     {
         healthBar.fillAmount = Mathf.Clamp(playerStats.currentHealth / playerStats.maxHealth, 0, 1);
-    }
 
+    }
 
     public void Heal(int amount)
     {
@@ -23,11 +25,12 @@ public class HealthManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("MedKit"))
+        if (collision.CompareTag("MedKit"))     //medkits collision detection
         {
             Heal(1); // Adjust the heal amount as needed
             Destroy(collision.gameObject);
         }
-    }
 
+    }
+    
 }

@@ -12,8 +12,15 @@ public class PlayerShootScript : MonoBehaviour
     private float FiringRate = 0.25f;
     private bool isShooting = false;
 
+    AudioManagerScript audioManager;
+
     private Coroutine shootingCoroutine;
-    
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
+    }
+
     void Start()
     {
         FiringRate = playerStats.firingRate; 
@@ -29,6 +36,8 @@ public class PlayerShootScript : MonoBehaviour
         {
             isShooting=true;
             shootingCoroutine = StartCoroutine(Shoot());
+
+            audioManager.PlaySFX(audioManager.GunShot);
         }
 
         if (Input.GetKeyUp(KeyCode.W) && isShooting) 

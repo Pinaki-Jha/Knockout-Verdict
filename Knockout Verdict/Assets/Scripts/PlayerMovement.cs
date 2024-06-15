@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D boxCollider;
     public StatSystemScript playerStats;    //Shifted moveSpeed and jumpForce to playerStats
     public Animator anim;
+    AudioManagerScript audioManager;
     [SerializeField] private LayerMask GroundLayer;
     [SerializeField] private LayerMask WallLayer;
 
@@ -19,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isCrouching = false;
     public bool isFlipping = false;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
+    }
 
     void Start()
     {
@@ -129,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 Body.velocity = new Vector2(Body.velocity.x, playerStats.jumpForce);
                 StartCoroutine(Flip());
+
+                audioManager.PlaySFX(audioManager.Jump);
             }
             Body.velocity = new Vector2(moveInput * playerStats.moveSpeed, Body.velocity.y);
 

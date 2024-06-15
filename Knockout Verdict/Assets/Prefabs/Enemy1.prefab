@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127150521415635726}
   - component: {fileID: 7247239342864841832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 8997257830726413911}
   - component: {fileID: 8989008898808377167}
   - component: {fileID: 2306666815308009152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -270,6 +270,8 @@ MonoBehaviour:
   firingRate: 2
   isAlive: 1
   healthBar: {fileID: 4375951476174410464}
+  iFramesDuration: 0
+  numOfFlashes: 0
 --- !u!114 &8989008898808377167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304481573389510655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunNozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

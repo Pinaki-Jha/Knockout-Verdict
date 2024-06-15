@@ -17,7 +17,6 @@ public class StatSystemScript : MonoBehaviour
     public float firingRate = 0.25f;
     public bool isAlive = true;
 
-
     public GameObject healthBar;
 
     private float hbaTime = 2f;
@@ -25,17 +24,26 @@ public class StatSystemScript : MonoBehaviour
     private float maxHealthBar;
     private float healthBarPos;
 
-    //This script will hold all of the stat variables and functions
-    //of all of the interactable characters.
-    //Stat variables will basically be variables and functions that are common for
-    //all characters and/or can change based on certain conditions
+    public GameManagerScript gameManager;
+    private bool isDead;
+
+    [Header("iFrames")]
+    [SerializeField] private float iFramesDuration;
+    [SerializeField] private float numOfFlashes;
+    private SpriteRenderer spriteRend;
+
+    /*This script will hold all of the stat variables and functions
+    of all of the interactable characters.
+    Stat variables will basically be variables and functions that are common for
+    all characters and/or can change based on certain conditions*/
 
     void Start()
     {
-
-        currentHealth = maxHealth;    //set the current health equal to the max health
+        currentHealth = maxHealth;      //set the current health equal to the max health
         maxHealthBar = healthBar.transform.localScale.x;
         healthBarPos = healthBar.transform.localPosition.x;
+
+        spriteRend = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -53,15 +61,26 @@ public class StatSystemScript : MonoBehaviour
         {
             BulletScript bulletScript = collision.gameObject.GetComponent<BulletScript>();
 
-            if (bulletScript.shooter == gameObject)                        //check for friendly fire.
+            if (bulletScript.shooter == gameObject)                    //check for friendly fire.
             {
                 Debug.Log(entityName + "shot self");
             }
+
             else
             {
                 currentHealth -= bulletScript.damage;
 
-                if (!healthBar.activeSelf) { healthBar.SetActive(true); hbaCounter = 0; } else { hbaCounter = 0; }
+                StartCoroutine(Invulnerability());  //call for I-Frames
+
+                if (!healthBar.activeSelf)
+                { 
+                    healthBar.SetActive(true); 
+                    hbaCounter = 0; 
+                }
+                else 
+                {
+                    hbaCounter = 0; 
+                }
                 float percentHealth = currentHealth / maxHealth;
 
                 healthBar.transform.localScale = new Vector3(maxHealthBar * percentHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
@@ -84,17 +103,30 @@ public class StatSystemScript : MonoBehaviour
         }
     }
 
-
     void Death()
     {
-        if (currentHealth <= 0)
-        {                //Check for dead player.
+        if (currentHealth <= 0 && !isDead)      //Check for dead player.
+        {                
+            isDead = true;
             name = gameObject.name;
             Debug.Log(name + " killed");
             isAlive = false;
             Destroy(gameObject);
-
+            gameManager.GameOver();
         }
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        Physics2D.IgnoreLayerCollision(7, 8, true);
+        for (int i = 0; i < numOfFlashes; i++)
+        {
+            spriteRend.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(0.3f);
+            spriteRend.color = new Color(1, 1, 1, 0.5f);
+            yield return new WaitForSeconds(0.3f);
+        }
+        Physics2D.IgnoreLayerCollision(7, 8, false);
     }
 }
 
