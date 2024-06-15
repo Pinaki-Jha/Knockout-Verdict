@@ -84,6 +84,10 @@ public class EnemyShootScript : MonoBehaviour
             GameObject shotBullet = Instantiate(bullet,gunNozzle.position, gunNozzle.rotation);
             BulletScript bulletScript = shotBullet.GetComponent<BulletScript>();
             bulletScript.shooter = gameObject; // Set the shooter reference for the bullet.
+            yield return new WaitForSeconds(0.2f);
+            GameObject shotBullet2 = Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
+            BulletScript bulletScript2 = shotBullet2.GetComponent<BulletScript>();
+            bulletScript2.shooter = gameObject; // Set the shooter reference for the bullet.
             yield return new WaitForSeconds(enemy1Stat.firingRate);
         }
     }
