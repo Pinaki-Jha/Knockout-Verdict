@@ -118,7 +118,7 @@ public class StatSystemScript : MonoBehaviour
 
     private IEnumerator Invulnerability()
     {
-        Physics2D.IgnoreLayerCollision(7, 8, true);
+        Physics2D.IgnoreLayerCollision(7, 9, true);
         for (int i = 0; i < numOfFlashes; i++)
         {
             spriteRend.color = new Color(1, 0, 0, 0.5f);
@@ -126,7 +126,7 @@ public class StatSystemScript : MonoBehaviour
             spriteRend.color = new Color(1, 1, 1, 0.5f);
             yield return new WaitForSeconds(0.3f);
         }
-        Physics2D.IgnoreLayerCollision(7, 8, false);
+        Physics2D.IgnoreLayerCollision(7, 9, false);
     }
 }
 
