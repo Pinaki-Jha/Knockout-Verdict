@@ -111,8 +111,11 @@ public class StatSystemScript : MonoBehaviour
             name = gameObject.name;
             Debug.Log(name + " killed");
             isAlive = false;
+            if (gameObject.CompareTag("Player"))
+            {
+                gameManager.GameOver();
+            }
             Destroy(gameObject);
-            gameManager.GameOver();
         }
     }
 

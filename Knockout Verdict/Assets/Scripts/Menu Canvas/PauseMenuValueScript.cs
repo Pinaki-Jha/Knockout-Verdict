@@ -30,4 +30,6 @@ public class PauseMenuValueScript : MonoBehaviour
             health.text = playerStats.currentHealth.ToString() + " / " + playerStats.maxHealth.ToString();
         }
     }
+
+    
 }

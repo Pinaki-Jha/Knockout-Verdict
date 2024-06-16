@@ -27,49 +27,59 @@ public class EnemyShootScript : MonoBehaviour
 
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position,player.position);
-
-        Flip();
-
-        if (distanceToPlayer <=  detectionRange) {
-            
-            Aim();
-
-            if(!isAttacking)
-            {
-                isAttacking = true;
-                shootingCoroutine = StartCoroutine(Attacking());
-
-            }
-        }
-        else
+        if (player)
         {
-            if(isAttacking)
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+            Flip();
+
+            if (distanceToPlayer <= detectionRange)
             {
-                isAttacking = false;
-                StopCoroutine(shootingCoroutine);
+
+                Aim();
+
+                if (!isAttacking)
+                {
+                    isAttacking = true;
+                    shootingCoroutine = StartCoroutine(Attacking());
+
+                }
+            }
+            else
+            {
+                if (isAttacking)
+                {
+                    isAttacking = false;
+                    StopCoroutine(shootingCoroutine);
+                }
             }
         }
     }
 
     void Aim() 
     {
-        Vector3 direction = player.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
-        gunNozzle.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        if (player)
+        {
+            Vector3 direction = player.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            gunNozzle.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        }
     }
 
     //enemy still can't flip
     void Flip() 
     {
-        Vector3 distance = player.position - transform.position;
-        if (distance.x < 0) 
+        if (player)
         {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-        else 
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            Vector3 distance = player.position - transform.position;
+            if (distance.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
         }
         
     }
