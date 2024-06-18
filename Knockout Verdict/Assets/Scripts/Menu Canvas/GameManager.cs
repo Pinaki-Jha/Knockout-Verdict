@@ -11,12 +11,16 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     private bool isPaused = false;
 
+    private GameObject Player;
+
+
     public GameObject pauseMenu;
     public GameObject gameOverUI;
 
     private GameObject menu;
     private GameObject optionsMenu;
-    private GameObject bag;
+    private GameObject superMenu;
+    private Slider MusicSlider;
 
 
     private float pauseCounter =0f;
@@ -29,7 +33,12 @@ public class GameManagerScript : MonoBehaviour
 
             optionsMenu = menu.transform.Find("Options Menu").GameObject();
 
-            bag = menu.transform.Find("Bag").GameObject();
+            superMenu = menu.transform.Find("Super Menu").GameObject();
+
+            Player = GameObject.FindGameObjectWithTag("Player");
+
+
+
         }
         catch (Exception ex) {
             Debug.Log(ex.Message);
@@ -47,11 +56,14 @@ public class GameManagerScript : MonoBehaviour
 
     void PauseGame()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !isPaused && pauseCounter>=0.02f)
+        if (Player)
         {
-            Time.timeScale = 0;
-            pauseMenu.SetActive(true);
-            isPaused = true;
+            if (Input.GetKeyDown(KeyCode.Return) && !isPaused && pauseCounter >= 0.02f)
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+                isPaused = true;
+            }
         }
         
     }
@@ -72,10 +84,10 @@ public class GameManagerScript : MonoBehaviour
     public void showOptions()
     {
         optionsMenu.SetActive(true);
-        bag.SetActive(false);
+        superMenu.SetActive(false);
 
-        Button backButton = optionsMenu.transform.Find("Back Button").GetComponent<Button>();
-        backButton.Select();
+        MusicSlider = optionsMenu.transform.Find("Music Slider").GameObject().GetComponent<Slider>();
+        MusicSlider.Select();
 
     }
 

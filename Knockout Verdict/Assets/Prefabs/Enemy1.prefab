@@ -262,7 +262,7 @@ MonoBehaviour:
   entityName: Jaata Ka Chhora
   maxHealth: 50
   currentHealth: 0
-  attack: 10
+  attack: 50
   bulletSpeed: 30
   defence: 0
   moveSpeed: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   firingRate: 2
   isAlive: 1
   healthBar: {fileID: 4375951476174410464}
+  gameManager: {fileID: 0}
   iFramesDuration: 0
   numOfFlashes: 0
 --- !u!114 &8989008898808377167
