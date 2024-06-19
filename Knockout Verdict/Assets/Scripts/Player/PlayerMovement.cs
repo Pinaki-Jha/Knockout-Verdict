@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
         Crouch();
 
+        anim.SetBool("IsRunning", moveInput != 0);
+
 
 
         //set animator prefrences

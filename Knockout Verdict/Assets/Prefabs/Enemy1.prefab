@@ -262,8 +262,8 @@ MonoBehaviour:
   entityName: Jaata Ka Chhora
   maxHealth: 50
   currentHealth: 0
-  attack: 50
-  bulletSpeed: 30
+  attack: 12
+  bulletSpeed: 20
   defence: 0
   moveSpeed: 0
   jumpForce: 0

@@ -20,6 +20,8 @@ public class OptionsMenuScript : MonoBehaviour
     void Awake()
     {
         musicSlider.Select();
+        musicAudio.volume = musicSlider.value;
+        sfxAudio.volume = sfxSlider.value;
     }
 
 

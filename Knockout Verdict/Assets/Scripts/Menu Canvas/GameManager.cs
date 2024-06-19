@@ -20,7 +20,12 @@ public class GameManagerScript : MonoBehaviour
     private GameObject menu;
     private GameObject optionsMenu;
     private GameObject superMenu;
-    private Slider MusicSlider;
+
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private AudioSource musicAudio;
+    [SerializeField] private AudioSource sfxAudio;
+
 
 
     private float pauseCounter =0f;
@@ -37,6 +42,9 @@ public class GameManagerScript : MonoBehaviour
 
             Player = GameObject.FindGameObjectWithTag("Player");
 
+
+            musicAudio.volume = musicSlider.value;
+            sfxAudio.volume = sfxSlider.value;
 
 
         }
@@ -86,8 +94,8 @@ public class GameManagerScript : MonoBehaviour
         optionsMenu.SetActive(true);
         superMenu.SetActive(false);
 
-        MusicSlider = optionsMenu.transform.Find("Music Slider").GameObject().GetComponent<Slider>();
-        MusicSlider.Select();
+        
+        musicSlider.Select();
 
     }
 

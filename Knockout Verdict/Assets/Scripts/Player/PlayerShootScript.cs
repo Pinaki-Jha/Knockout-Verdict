@@ -32,7 +32,7 @@ public class PlayerShootScript : MonoBehaviour
 
 
         //checks for shooting!
-        if (Input.GetKeyDown(KeyCode.W) && !isShooting) 
+        if (Input.GetKeyDown(KeyCode.W) && !isShooting && Time.timeScale==1) 
         {
             isShooting=true;
             shootingCoroutine = StartCoroutine(Shoot());
@@ -40,7 +40,7 @@ public class PlayerShootScript : MonoBehaviour
             audioManager.PlaySFX(audioManager.GunShot);
         }
 
-        if (Input.GetKeyUp(KeyCode.W) && isShooting) 
+        if (Input.GetKeyUp(KeyCode.W) && isShooting && Time.timeScale==1) 
         {
             isShooting=false;
             StopCoroutine(shootingCoroutine);
@@ -53,10 +53,13 @@ public class PlayerShootScript : MonoBehaviour
     {
         while (true)
         {
-            GameObject shotBullet = Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
-            BulletScript bulletScript = shotBullet.GetComponent<BulletScript>();
-            bulletScript.shooter = player; // Set the shooter reference for the bullet.
-            yield return new WaitForSeconds(FiringRate);
+            
+            {
+                GameObject shotBullet = Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
+                BulletScript bulletScript = shotBullet.GetComponent<BulletScript>();
+                bulletScript.shooter = player; // Set the shooter reference for the bullet.
+                yield return new WaitForSeconds(FiringRate);
+            }
             
         }
         

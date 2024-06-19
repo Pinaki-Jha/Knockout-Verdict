@@ -87,7 +87,7 @@ public class EnemyShootScript : MonoBehaviour
     IEnumerator Attacking()
     {
 
-        while (isAttacking)
+        while (isAttacking && player)
         {
             yield return null;
             

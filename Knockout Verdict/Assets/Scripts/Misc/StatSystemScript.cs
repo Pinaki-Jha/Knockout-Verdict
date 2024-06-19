@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class StatSystemScript : MonoBehaviour
@@ -32,6 +34,8 @@ public class StatSystemScript : MonoBehaviour
     [SerializeField] private float numOfFlashes;
     private SpriteRenderer spriteRend;
 
+    private Coroutine invincibilityCoroutine;
+
     /*This script will hold all of the stat variables and functions
     of all of the interactable characters.
     Stat variables will basically be variables and functions that are common for
@@ -43,7 +47,17 @@ public class StatSystemScript : MonoBehaviour
         maxHealthBar = healthBar.transform.localScale.x;
         healthBarPos = healthBar.transform.localPosition.x;
 
-        spriteRend = GetComponent<SpriteRenderer>();
+
+        if (gameObject.CompareTag("Player"))
+        {
+            spriteRend = gameObject.transform.Find("Sprite").GameObject().GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            spriteRend = gameObject.GetComponent<SpriteRenderer>();    //isko hata dena baad mein aur ek mein hee kar dena after making enemy sprites
+        }
+            
+            
     }
 
     void Update()
@@ -70,7 +84,10 @@ public class StatSystemScript : MonoBehaviour
             {
                 currentHealth -= bulletScript.damage;
 
-                StartCoroutine(Invulnerability());  //call for I-Frames
+                if (currentHealth > 0 && gameObject.layer==7)
+                {
+                    invincibilityCoroutine = StartCoroutine(Invulnerability());  //call for I-Frames
+                }
 
                 if (!healthBar.activeSelf)
                 { 
@@ -106,7 +123,7 @@ public class StatSystemScript : MonoBehaviour
     void Death()
     {
         if (currentHealth <= 0 && !isDead)      //Check for dead player.
-        {                
+        {  
             isDead = true;
             name = gameObject.name;
             Debug.Log(name + " killed");
@@ -126,7 +143,7 @@ public class StatSystemScript : MonoBehaviour
         {
             spriteRend.color = new Color(1, 0, 0, 0.5f);
             yield return new WaitForSeconds(0.3f);
-            spriteRend.color = new Color(1, 1, 1, 0.5f);
+            spriteRend.color = new Color(1, 1, 1, 1f);
             yield return new WaitForSeconds(0.3f);
         }
         Physics2D.IgnoreLayerCollision(7, 9, false);
