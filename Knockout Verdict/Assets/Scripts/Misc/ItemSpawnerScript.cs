@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectSpawnerScript : MonoBehaviour
+public class ItemSpawnerScript : MonoBehaviour
 {
-    public GameObject toSpawnEnemy;
-    public GameObject toSpawnMeds;
+    public GameObject toSpawnItem;
 
     private void OnBecameVisible()
     {
-        Debug.Log("Enemy Instantiated");
-        Instantiate(toSpawnEnemy,gameObject.transform.position, gameObject.transform.rotation);   
+        Debug.Log(toSpawnItem.name + " Instantiated");
+        Instantiate(toSpawnItem,gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(gameObject);
     }
 
 

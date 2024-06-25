@@ -20,11 +20,18 @@ public class GameManagerScript : MonoBehaviour
     private GameObject menu;
     private GameObject optionsMenu;
     private GameObject superMenu;
+    private GameObject itemsMenu;
+    private GameObject weaponsMenu;
+    private GameObject armorsMenu;
 
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private AudioSource musicAudio;
     [SerializeField] private AudioSource sfxAudio;
+
+    [SerializeField] private Button itemsBackButton;
+    [SerializeField] private Button weaponsBackButton;
+    [SerializeField] private Button armorsBackButton;
 
 
 
@@ -39,6 +46,12 @@ public class GameManagerScript : MonoBehaviour
             optionsMenu = menu.transform.Find("Options Menu").GameObject();
 
             superMenu = menu.transform.Find("Super Menu").GameObject();
+
+            itemsMenu = menu.transform.Find("Items Menu").GameObject();
+
+            weaponsMenu = menu.transform.Find("Weapons Menu").GameObject();
+
+            armorsMenu = menu.transform.Find("Armors Menu").GameObject();
 
             Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -97,6 +110,33 @@ public class GameManagerScript : MonoBehaviour
         
         musicSlider.Select();
 
+    }
+
+
+    public void showWeaponsInventory()
+    { 
+        weaponsMenu.SetActive(true);
+        superMenu.SetActive(false);
+
+        weaponsBackButton.Select();
+
+    }
+
+    public void showArmorsInventory()
+    {
+        armorsMenu.SetActive(true);
+        superMenu.SetActive(false);
+
+        armorsBackButton.Select();
+
+    }
+
+    public void showItemsInventory()
+    {
+        itemsMenu.SetActive(true);
+        superMenu.SetActive(false);
+
+        itemsBackButton.Select();
     }
 
 

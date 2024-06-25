@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7955496905684957009}
-  - component: {fileID: 5416746811148603718}
   - component: {fileID: 6798578681834072943}
+  - component: {fileID: 2707295175392656305}
   m_Layer: 0
-  m_Name: Object Spawner
+  m_Name: Item Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,20 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5416746811148603718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237973307030178654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1bca526a4d9b44fb0bd4c14e391ba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toSpawnEnemy: {fileID: 5283445823890473307, guid: 203b46588af010244a99d5351352a52d, type: 3}
-  toSpawnMeds: {fileID: 5127550084553752669, guid: ad088e263910beb4f9b7d01aff2eb5c5, type: 3}
 --- !u!212 &6798578681834072943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2707295175392656305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237973307030178654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3bcaa4904fdac4091e6e023baf1e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toSpawnItem: {fileID: 0}
