@@ -68,6 +68,11 @@ public class ItemsSlotScript : MonoBehaviour
         SelectActionPanel.SetActive(true);
         useItemButton.Select();
 
+        useItemButton.onClick.RemoveAllListeners();
+        dropItemButton.onClick.RemoveAllListeners();
+        backItemButton.onClick.RemoveAllListeners();
+
+
         useItemButton.onClick.AddListener(UseItem);
         dropItemButton.onClick.AddListener(DropItem);
         backItemButton.onClick.AddListener(BackItem);
@@ -96,6 +101,7 @@ public class ItemsSlotScript : MonoBehaviour
     public void BackItem() { 
         SelectActionPanel.SetActive(false);
         itemButton.GetComponent<Button>().Select();
+
     }
     
 }

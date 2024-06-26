@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4098744800221128481}
   - component: {fileID: 8299560678787476716}
   - component: {fileID: 6987237578533116901}
-  - component: {fileID: 3052267574946326953}
+  - component: {fileID: 1448357360543591695}
   m_Layer: 5
   m_Name: SelectedPanel
   m_TagString: Untagged
@@ -133,7 +133,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3052267574946326953
+--- !u!114 &1448357360543591695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3808837397911365930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 356d735708f07c4449fdfbb737638ce9, type: 3}
+  m_Script: {fileID: 11500000, guid: 39aa16a04f95eef40b5ef54e88b17aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemDescriptionImage: {fileID: 0}
@@ -318,13 +318,11 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   itemDescription: 
   isFull: 0
-  isEquipped: 0
   SelectActionPanel: {fileID: 0}
   useItemButton: {fileID: 0}
   dropItemButton: {fileID: 0}
   backItemButton: {fileID: 0}
   itemSpriteImage: {fileID: 4201755168842294888}
   itemButton: {fileID: 3808837397911365930}
-  itemEquippedText: {fileID: 0}
   defaultSpriteImage: {fileID: 21300000, guid: 6b7c302981ef60646af202b0377bd688, type: 3}
   backButton: {fileID: 0}

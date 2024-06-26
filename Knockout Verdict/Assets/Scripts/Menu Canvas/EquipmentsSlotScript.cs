@@ -44,17 +44,25 @@ public class EquipmentsSlotScript : MonoBehaviour
         //Debug.Log(inventoryManager);
     }
     public void addItem(string itemName, Sprite itemSprite, string itemDescription, EquipmentType equipmentType) {
-        this.itemName = itemName;
-        this.itemSprite = itemSprite;
-        this.itemDescription = itemDescription;
-        this.equipmentType = equipmentType;
-
         
+        //Debug.Log("reached here");
+        this.itemName = itemName;
+        //Debug.Log("reached name");
+        this.itemSprite = itemSprite;
+        //Debug.Log("reached sprite");
+        this.itemDescription = itemDescription;
+        //Debug.Log("reached description");
+        this.equipmentType = equipmentType;
+        //Debug.Log("reached type");
+
+
         isFull = true;
         itemButton.SetActive(true);
+        //Debug.Log("reached item button");
 
         itemSpriteImage.sprite = itemSprite;
-        
+        //Debug.Log("reached here");
+
 
 
     }
@@ -74,8 +82,11 @@ public class EquipmentsSlotScript : MonoBehaviour
         {
             isEquipped = false;
             itemEquippedText.SetActive(false);
+            inventoryManager.UnequipItem(itemName, equipmentType);
+            SelectActionPanel.SetActive(false);
+            itemButton.GetComponent<Button>().Select();
 
-            
+
         } else {
             if (equipmentType ==EquipmentType.Armor) { inventoryManager.UnequipAllArmors(); }
             else { inventoryManager.UnequipAllWeapons(); }
@@ -83,6 +94,9 @@ public class EquipmentsSlotScript : MonoBehaviour
             isEquipped = true;
 
             itemEquippedText.SetActive(true);
+
+            SelectActionPanel.SetActive(false);
+            itemButton.GetComponent<Button>().Select();
         }
 
     }
@@ -91,6 +105,11 @@ public class EquipmentsSlotScript : MonoBehaviour
     public void ActionPanelActivate() { 
         SelectActionPanel.SetActive(true);
         equipItemButton.Select();
+
+        equipItemButton.onClick.RemoveAllListeners();
+        dropItemButton.onClick.RemoveAllListeners();
+        backItemButton.onClick.RemoveAllListeners();
+
 
         equipItemButton.onClick.AddListener(itemEquipToggle);
         dropItemButton.onClick.AddListener(DropItem);
@@ -103,6 +122,8 @@ public class EquipmentsSlotScript : MonoBehaviour
     {
         SelectActionPanel.SetActive(false);
         isFull = false;
+        isEquipped = false;
+        itemEquippedText.SetActive(false);
         itemButton.SetActive(false);
         itemSpriteImage.sprite = defaultSpriteImage;
         backButton.Select();

@@ -267,7 +267,7 @@ MonoBehaviour:
   defence: 0
   moveSpeed: 0
   jumpForce: 0
-  firingRate: 2
+  firingDelay: 3
   isAlive: 1
   healthBar: {fileID: 4375951476174410464}
   gameManager: {fileID: 0}

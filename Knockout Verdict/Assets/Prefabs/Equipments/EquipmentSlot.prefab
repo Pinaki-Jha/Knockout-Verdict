@@ -121,8 +121,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ItemsSlotScript, Assembly-CSharp
+      - m_Target: {fileID: 7081321096379567958}
+        m_TargetAssemblyTypeName: EquipmentsSlotScript, Assembly-CSharp
         m_MethodName: ActionPanelActivate
         m_Mode: 1
         m_Arguments:
@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356d735708f07c4449fdfbb737638ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDescriptionImage: {fileID: 0}
-  itemDescriptionNameText: {fileID: 0}
-  itemDescriptionDescriptionText: {fileID: 0}
-  itemsSlot: {fileID: 0}
+  equipmentDescriptionImage: {fileID: 0}
+  equipmentDescriptionNameText: {fileID: 0}
+  equipmentDescriptionDescriptionText: {fileID: 0}
+  equipmentsSlot: {fileID: 7081321096379567958}
 --- !u!1 &4994518231657054055
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,11 +399,12 @@ MonoBehaviour:
   itemDescription: 
   isFull: 0
   isEquipped: 0
+  equipmentType: 0
   SelectActionPanel: {fileID: 0}
-  useItemButton: {fileID: 0}
+  equipItemButton: {fileID: 0}
   dropItemButton: {fileID: 0}
   backItemButton: {fileID: 0}
-  itemSpriteImage: {fileID: 0}
+  itemSpriteImage: {fileID: 4201755168842294888}
   itemButton: {fileID: 3808837397911365930}
   itemEquippedText: {fileID: 4994518231657054055}
   defaultSpriteImage: {fileID: 0}
