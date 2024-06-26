@@ -9,7 +9,7 @@ public class PlayerShootScript : MonoBehaviour
     public StatSystemScript playerStats;
     public Transform gunNozzle;
 
-    private float FiringRate = 0.25f;
+    private float FiringDelay = 0.25f;
     private bool isShooting = false;
 
     AudioManagerScript audioManager;
@@ -23,7 +23,7 @@ public class PlayerShootScript : MonoBehaviour
 
     void Start()
     {
-        FiringRate = playerStats.firingRate; 
+        FiringDelay = playerStats.firingDelay; 
     }
 
     
@@ -58,7 +58,7 @@ public class PlayerShootScript : MonoBehaviour
                 GameObject shotBullet = Instantiate(bullet, gunNozzle.position, gunNozzle.rotation);
                 BulletScript bulletScript = shotBullet.GetComponent<BulletScript>();
                 bulletScript.shooter = player; // Set the shooter reference for the bullet.
-                yield return new WaitForSeconds(FiringRate);
+                yield return new WaitForSeconds(FiringDelay);
             }
             
         }

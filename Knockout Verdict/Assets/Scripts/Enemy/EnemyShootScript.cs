@@ -99,7 +99,7 @@ public class EnemyShootScript : MonoBehaviour
             BulletScript bulletScript2 = shotBullet2.GetComponent<BulletScript>();
             bulletScript2.shooter = gameObject; // Set the shooter reference for the bullet.
 
-            yield return new WaitForSeconds(enemy1Stat.firingRate);
+            yield return new WaitForSeconds(enemy1Stat.firingDelay);
         }
     }
 }

@@ -16,7 +16,7 @@ public class StatSystemScript : MonoBehaviour
     public float defence = 0f;
     public float moveSpeed = 5.5f;
     public float jumpForce = 28f;
-    public float firingRate = 0.25f;
+    public float firingDelay = 0.25f;
     public bool isAlive = true;
 
     public GameObject healthBar;
@@ -43,21 +43,33 @@ public class StatSystemScript : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;      //set the current health equal to the max health
-        maxHealthBar = healthBar.transform.localScale.x;
-        healthBarPos = healthBar.transform.localPosition.x;
-
-
+        
         if (gameObject.CompareTag("Player"))
         {
             spriteRend = gameObject.transform.Find("Sprite").GameObject().GetComponent<SpriteRenderer>();
+
+            PlayerBaseStatsScript playerBaseStats = gameObject.GetComponent<PlayerBaseStatsScript>();
+
+            entityName = playerBaseStats.getPlayerName;
+            maxHealth = playerBaseStats.getPlayerBaseMaxHealth;
+            attack = playerBaseStats.getPlayerBaseAttack;
+            bulletSpeed = playerBaseStats.getPlayerBaseBulletSpeed;
+            defence = playerBaseStats.getPlayerBaseDefence;
+            moveSpeed = playerBaseStats.getPlayerBaseMoveSpeed;
+            jumpForce = playerBaseStats.getPlayerBaseJumpForce;
+            firingDelay = playerBaseStats.getPlayerBaseFiringDelay;
         }
         else
         {
             spriteRend = gameObject.GetComponent<SpriteRenderer>();    //isko hata dena baad mein aur ek mein hee kar dena after making enemy sprites
         }
-            
-            
+
+        currentHealth = maxHealth;      //set the current health equal to the max health
+        maxHealthBar = healthBar.transform.localScale.x;
+        healthBarPos = healthBar.transform.localPosition.x;
+
+
+
     }
 
     void Update()
@@ -82,7 +94,7 @@ public class StatSystemScript : MonoBehaviour
 
             else
             {
-                currentHealth -= bulletScript.damage;
+                currentHealth -= bulletScript.damage - defence;
 
                 if (currentHealth > 0 && gameObject.layer==7)
                 {
@@ -149,5 +161,7 @@ public class StatSystemScript : MonoBehaviour
         Physics2D.IgnoreLayerCollision(7, 9, false);
     }
 }
+
+
 
 
