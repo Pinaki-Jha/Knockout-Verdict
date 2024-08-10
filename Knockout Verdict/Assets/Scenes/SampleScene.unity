@@ -3487,9 +3487,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   flipDuration: 0.3
-  crouchHeightAdjustment: 0.001
+  crouchHeightAdjustment: 0.01
   isCrouching: 0
   isFlipping: 0
+  GunCrouch: {x: 0.01, y: 0.142, z: 0}
+  GunNotCrouch: {x: 0.0688, y: 0.0391, z: 0}
 --- !u!114 &247757565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10106,7 +10108,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.66849
+      value: 13.17342
       objectReference: {fileID: 0}
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalScale.y
@@ -10114,7 +10116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.881176
+      value: 23.4941
       objectReference: {fileID: 0}
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13707,11 +13709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.970974
+      value: 53.26
       objectReference: {fileID: 0}
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.1933
+      value: 6.6
       objectReference: {fileID: 0}
     - target: {fileID: 2577584033557643739, guid: 5c6df4c48d8958f4e84acae7bb12ef75, type: 3}
       propertyPath: m_LocalPosition.z

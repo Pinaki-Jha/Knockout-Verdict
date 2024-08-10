@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isCrouching = false;
     public bool isFlipping = false;
 
+    public Vector3 GunCrouch;
+    public Vector3 GunNotCrouch;
+
+
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
@@ -97,9 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
                 // gun direction + position fix
                 UnityEngine.Transform Guntransform = transform.Find("Gun");
-                Debug.Log(Guntransform.position);
-                Debug.Log(Guntransform.localPosition);
-                Guntransform.position = new Vector3(0.204f, -0.024f, Guntransform.position.z);
+                Guntransform.localPosition = GunCrouch;
             }
         }
         else
@@ -118,9 +120,7 @@ public class PlayerMovement : MonoBehaviour
 
                 // gun direction + position fix
                 UnityEngine.Transform Guntransform = transform.Find("Gun");
-                Debug.Log(Guntransform.position);
-                Debug.Log(Guntransform.localPosition);
-                Guntransform.position = new Vector3(0.122f, Guntransform.position.y, Guntransform.position.z);
+                Guntransform.localPosition = GunNotCrouch;
             }
         }
     }
