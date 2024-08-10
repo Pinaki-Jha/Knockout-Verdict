@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpCoolDown;
     public float flipDuration = 0.3f;   //flip time
     public float crouchHeightAdjustment = 0.01f;   // How much to lift the player when crouching
+    public Vector3 gunCrouchPosition; // Position of the gun when player is crouching
+    public Vector3 gunStandPosition; // Position of the gun when player is standing
 
     public bool isCrouching = false;
     public bool isFlipping = false;
@@ -95,9 +97,8 @@ public class PlayerMovement : MonoBehaviour
 
                 // gun direction + position fix
                 UnityEngine.Transform Guntransform = transform.Find("Gun");
-                Debug.Log(Guntransform.position);
-                Debug.Log(Guntransform.localPosition);
-                Guntransform.position = new Vector3(0.204f, -0.024f, Guntransform.position.z);
+                Guntransform.localPosition = gunCrouchPosition;
+                Guntransform.localRotation = Quaternion.Euler(0, 0, 90);
             }
         }
         else
@@ -116,9 +117,12 @@ public class PlayerMovement : MonoBehaviour
 
                 // gun direction + position fix
                 UnityEngine.Transform Guntransform = transform.Find("Gun");
-                Debug.Log(Guntransform.position);
-                Debug.Log(Guntransform.localPosition);
-                Guntransform.position = new Vector3(0.122f, Guntransform.position.y, Guntransform.position.z);
+                // Move the gun back to the standing position
+                if (Guntransform != null)
+                {
+                    Guntransform.localPosition = gunStandPosition;
+                    Guntransform.localRotation = Quaternion.Euler(0, Guntransform.position.y, Guntransform.position.z); // Ensure the gun is facing the same direction
+                }
             }
         }
     }

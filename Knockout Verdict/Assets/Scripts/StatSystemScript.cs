@@ -13,8 +13,13 @@ public class StatSystemScript : MonoBehaviour
     public float bulletSpeed = 30f;
     public float defence = 0f;
     public float moveSpeed = 5.5f;
+<<<<<<< Updated upstream:Knockout Verdict/Assets/Scripts/StatSystemScript.cs
     public float jumpForce = 28f;
     public float firingRate = 0.25f;
+=======
+    public float jumpForce = 33f;
+    public float firingDelay = 0.25f;
+>>>>>>> Stashed changes:Knockout Verdict/Assets/Scripts/Misc/StatSystemScript.cs
     public bool isAlive = true;
 
     public GameObject healthBar;
