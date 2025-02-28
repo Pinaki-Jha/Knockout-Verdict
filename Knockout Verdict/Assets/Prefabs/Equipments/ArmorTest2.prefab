@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e79a8e99568db94f91ea8480294c59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: WeaponTest2
+  itemName: ArmorTest2
   equipmentType: 3
   itemSprite: {fileID: 21300000, guid: 8d17d86ad3aea0945ab02228094047d5, type: 3}
   itemDescription: 'Test Weapon 2
