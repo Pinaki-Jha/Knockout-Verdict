@@ -129,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
                 // gun direction + position fix
                 UnityEngine.Transform Guntransform = transform.Find("Gun");
                 Guntransform.localPosition = GunNotCrouch;
+
+                // adding this comment to be able to push it to repo
             }
         }
     }
