@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class AudioManagerScript : MonoBehaviour
@@ -16,7 +14,7 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip Punch;
     public AudioClip Achievement;
 
-    void Start()
+    private void Start()
     {
         MusicSource.clip = GameBG;
         MusicSource.Play();
